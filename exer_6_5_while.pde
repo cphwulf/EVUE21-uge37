@@ -1,22 +1,35 @@
-int endY;
+int y, endY, tmpEndY;
 int direction;
 int stepSize;
+int speed;
 
 void setup() {
-  size(400,400);
-  endY=0;
+  size(400, 400);
+  endY=10;
   direction=1;
+  speed=1;
   stepSize=10;
+  y=0;
+  tmpEndY=0;
 }
 
 void draw() {
   background(255);
-  int y=0;
   strokeWeight(3);
-  while(y<endY) {
-    y=y+(1*stepSize);
-    println(y);
-    line(0,y,width,y);
+  
+  if (endY <= width && endY >=0) {
+    tmpEndY=endY;
+    endY=endY+((stepSize)*direction);
+  } else {
+    direction=direction*-1;
+    endY=tmpEndY;
   }
-  endY=endY+1;
+  println(" EY:" + endY + " dir: "+direction + " y: "+y);
+  
+  y=0;
+  while (y<=endY && y>=0-stepSize) {
+    y=y+(stepSize);
+    //println("  -> " +y + " " + endY + " " + direction);
+    line(0, y, width, y);
+  }
 }
