@@ -18,6 +18,8 @@ void draw() {
   strokeWeight(3);
   
   if (endY <= width && endY >=0) {
+    // sørg for at gemme endY i tempEndY inden den vokser 
+    // ud over width.  
     tmpEndY=endY;
     endY=endY+((stepSize)*direction);
   } else {
